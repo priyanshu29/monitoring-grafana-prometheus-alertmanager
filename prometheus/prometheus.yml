@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'node-monitor'
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['localhost:9093']
+rule_files:
+  - "alert.rules.yml"
+
+scrape_configs:
+  - job_name: 'node-app'
+    static_configs:
+      - targets: ['192.168.49.2:30080']
